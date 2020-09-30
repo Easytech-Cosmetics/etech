@@ -4,7 +4,7 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 from geopy import distance
 
 
-R = 50 #radius in km
+R = 0.5 #radius in km
 
 class WebsiteSalePayment(WebsiteSale):
     @http.route(['/shop/payment'], type='http', auth="public", website=True, sitemap=False)
