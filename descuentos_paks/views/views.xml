@@ -1,0 +1,126 @@
+
+<odoo>
+    <data>
+
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="partner_instructor_form_view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+            <xpath expr='//field[@name="order_line"]/tree//field[@name="price_unit"]' position="after">
+                
+                
+                <field name="Descuento_paquete" />
+                <field name="Pruebas" attrs="{'invisible':[['product_id','=','false']]}"/>
+                <field name="cantidad"/>
+
+
+                
+            </xpath>
+            <!--
+             <xpath expr='//field[@name="amount_untaxed"]' position="after">
+
+                <field name="Pronto_pago" readonly="False"/>
+                <field name="descuento" readonly="True"/>
+
+             </xpath>
+              -->
+            
+              </field> 
+
+
+                  
+                
+        </record>
+
+    </data>
+
+  <data>
+
+
+
+<!-- VISTAS EMPAQUETADO  añadimos campo descuento -->
+
+<record model="ir.ui.view" id="producto_package_descuento">
+    <field name="name">product_product_packaging_form_view</field>
+    <field name="model">product.packaging</field>
+    <field name="inherit_id" ref="product.product_packaging_form_view"/>
+    <field name="arch" type="xml">
+
+
+       <xpath expr='//field[@name="product_id"]' position="after">
+
+           <field name="Descuento"/>
+
+      </xpath>
+
+
+
+    </field>
+</record>
+
+
+
+
+
+
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="descuentos_paquetes.list">
+      <field name="name">descuentos_paquetes list</field>
+      <field name="model">descuentos_paquetes.descuentos_paquetes</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="descuentos_paquetes.action_window">
+      <field name="name">descuentos_paquetes window</field>
+      <field name="res_model">descuentos_paquetes.descuentos_paquetes</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="descuentos_paquetes.action_server">
+      <field name="name">descuentos_paquetes server</field>
+      <field name="model_id" ref="model_descuentos_paquetes_descuentos_paquetes"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="descuentos_paquetes" id="descuentos_paquetes.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="descuentos_paquetes.menu_1" parent="descuentos_paquetes.menu_root"/>
+    <menuitem name="Menu 2" id="descuentos_paquetes.menu_2" parent="descuentos_paquetes.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="descuentos_paquetes.menu_1_list" parent="descuentos_paquetes.menu_1"
+              action="descuentos_paquetes.action_window"/>
+    <menuitem name="Server to list" id="descuentos_paquetes" parent="descuentos_paquetes.menu_2"
+              action="descuentos_paquetes.action_server"/>
+-->
+  </data>
+</odoo>
